@@ -8,6 +8,7 @@ import { components } from "@/slices";
 import AlternatingText from "@/slices/AlternatingText";
 import BigText from "@/slices/BigText";
 import Hero from "@/slices/Hero";
+import SkyDive from "@/slices/SkyDive";
 
 export const metadata: Metadata = {
   title: "Chill Can | TailAdmin - Soda Can",
@@ -18,6 +19,7 @@ export default async function Index() {
   return (
     <div>
       <Hero/>
+      <SkyDive/>
       {/* <AlternatingText/>
       <BigText/> */}
       {/* <SliceZone slices={home.data.slices} components={components} /> */}
