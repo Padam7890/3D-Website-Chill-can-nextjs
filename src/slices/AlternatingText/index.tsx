@@ -20,22 +20,25 @@ export type AlternatingTextProps =
 /**
  * Component for "AlternatingText" Slices.
  */
-const AlternatingText = ({ slice }: AlternatingTextProps): JSX.Element => {
+
+const sliceText = [
+  {
+    heading: "This is Heading",
+    body: "This is Body",
+  },
+];
+const AlternatingText = (): JSX.Element => {
   return (
-    <Bounded
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="alternating-text-container relative bg-yellow-300 text-sky-950"
-    >
+    <Bounded className="alternating-text-container relative bg-yellow-300 text-sky-950">
       <div>
         <div className="relative z-[100] grid">
           <View className="alternating-text-view absolute left-0 top-0 h-screen w-full">
             <Scene />
           </View>
 
-          {slice.primary.text_group.map((item, index) => (
+          {sliceText.map((item, index) => (
             <div
-              key={asText(item.heading)}
+              key={item?.heading}
               className="alternating-section grid h-screen place-items-center gap-x-12 md:grid-cols-2"
             >
               <div
@@ -46,11 +49,9 @@ const AlternatingText = ({ slice }: AlternatingTextProps): JSX.Element => {
                 )}
               >
                 <h2 className="text-balance text-6xl font-bold">
-                  <PrismicText field={item.heading} />
+                  {item.heading}
                 </h2>
-                <div className="mt-4 text-xl">
-                  <PrismicRichText field={item.body} />
-                </div>
+                <div className="mt-4 text-xl">{item.body}</div>
               </div>
             </div>
           ))}

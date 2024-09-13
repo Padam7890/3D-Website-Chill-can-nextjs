@@ -15,18 +15,11 @@ import Scene from "./Scene";
 import { Bubbles } from "./Bubbles";
 import { useStore } from "@/hooks/useStore";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Props for `Hero`.
- */
-export type HeroProps = SliceComponentProps<Content.HeroSlice>;
-
-/**
- * Component for "Hero" Slices.
- */
-const Hero = ({ slice }: HeroProps): JSX.Element => {
+const Hero = (): JSX.Element => {
   const ready = useStore((state) => state.ready);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
@@ -102,11 +95,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
   );
 
   return (
-    <Bounded
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="hero opacity-0"
-    >
+    <Bounded className="hero opacity-0">
       {isDesktop && (
         <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
           <Scene />
@@ -119,36 +108,44 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div className="grid auto-rows-min place-items-center text-center">
             <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
               <TextSplitter
-                text={asText(slice.primary.heading)}
+                text="Live gutsy"
                 wordDisplayStyle="block"
                 className="hero-header-word"
               />
             </h1>
             <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
-              <PrismicRichText field={slice.primary.subheading} />
+              Soda Perfected
             </div>
             <div className="hero-body text-2xl font-normal text-sky-950">
-              <PrismicRichText field={slice.primary.body} />
+              3-5g sugar. 9g fiber. 5 delicious flavors.
             </div>
             <Button
-              buttonLink={slice.primary.button_link}
-              buttonText={slice.primary.button_text}
+              buttonLink={"/"}
+              buttonText="Shop Now"
               className="hero-button mt-12"
             />
           </div>
         </div>
 
         <div className="text-side relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
-          <PrismicNextImage
+      
+          <Image
             className="w-full md:hidden"
-            field={slice.primary.cans_image}
+            src={"/labels/lemon-lime.png"}
+            alt="can image "
+            width={100}
+            height={100}
           />
           <div>
             <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
-              <TextSplitter text={asText(slice.primary.second_heading)} />
+              <TextSplitter text={"Try all five flavors"} />
             </h2>
             <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
-              <PrismicRichText field={slice.primary.second_body} />
+              <p>
+                Our soda is made with real fruit juice and a touch of cane
+                sugar. We never use artificial sweeteners or high fructose corn
+                syrup. Try all five flavors and find your favorite!
+              </p>
             </div>
           </div>
         </div>

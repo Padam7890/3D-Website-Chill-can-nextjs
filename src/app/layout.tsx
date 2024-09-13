@@ -28,9 +28,9 @@ export default function RootLayout({
           {children}
           <ViewCanvas />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
-      <PrismicPreview repositoryName={repositoryName} />
+      {/* <PrismicPreview repositoryName={repositoryName} /> */}
     </html>
   );
 }
