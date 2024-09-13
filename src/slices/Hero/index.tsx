@@ -131,10 +131,10 @@ const Hero = (): JSX.Element => {
       
           <Image
             className="w-full md:hidden"
-            src={"/labels/lemon-lime.png"}
+            src={"/Images/chillcangroup.png"}
             alt="can image "
-            width={100}
-            height={100}
+            width={500}
+            height={50}
           />
           <div>
             <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
