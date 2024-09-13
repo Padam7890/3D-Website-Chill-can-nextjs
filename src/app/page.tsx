@@ -7,8 +7,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import AlternatingText from "@/slices/AlternatingText";
 import BigText from "@/slices/BigText";
-import Hero from "@/slices/Hero";
-import SkyDive from "@/slices/SkyDive";
+import { CarouselPage, HeroPage, SkydivePage } from "@/dynamic Import/dynamicimport";
 
 export const metadata: Metadata = {
   title: "Chill Can | TailAdmin - Soda Can",
@@ -18,8 +17,9 @@ export const metadata: Metadata = {
 export default async function Index() {
   return (
     <div>
-      <Hero/>
-      <SkyDive/>
+      <HeroPage/>
+      <SkydivePage/>
+      <CarouselPage/>
       {/* <AlternatingText/>
       <BigText/> */}
       {/* <SliceZone slices={home.data.slices} components={components} /> */}

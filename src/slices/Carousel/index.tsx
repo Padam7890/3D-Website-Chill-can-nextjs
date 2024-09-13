@@ -22,16 +22,18 @@ const FLAVORS: {
   flavor: SodaCanProps["flavor"];
   color: string;
   name: string;
+  price?: string;
 }[] = [
-  { flavor: "blackCherry", color: "#710523", name: "Black Cherry" },
-  { flavor: "grape", color: "#572981", name: "Grape Goodness" },
-  { flavor: "lemonLime", color: "#164405", name: "Lemon Lime" },
+  { flavor: "blackCherry", color: "#710523", name: "Black Cherry", price:"200" },
+  { flavor: "grape", color: "#572981", name: "Grape Goodness",price:"300" },
+  { flavor: "lemonLime", color: "#164405", name: "Lemon Lime", price:"500" },
   {
     flavor: "strawberryLemonade",
     color: "#690B3D",
     name: "Strawberry Lemonade",
+    price:"400"
   },
-  { flavor: "watermelon", color: "#4B7002", name: "Watermelon Crush" },
+  { flavor: "watermelon", color: "#4B7002", name: "Watermelon Crush" , price:"500" },
 ];
 
 /**
@@ -42,7 +44,7 @@ export type CarouselProps = SliceComponentProps<Content.CarouselSlice>;
 /**
  * Component for "Carousel" Slices.
  */
-const Carousel = ({ slice }: CarouselProps): JSX.Element => {
+const Carousel = (): JSX.Element => {
   const [currentFlavorIndex, setCurrentFlavorIndex] = useState(0);
   const sodaCanRef = useRef<Group>(null);
 
@@ -82,8 +84,8 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
 
   return (
     <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
+      data-slice-type={"carousel"}
+      data-slice-variation={"default"}
       className="carousel relative grid h-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
     >
       <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
@@ -91,7 +93,9 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-[#710523]" />
 
       <h2 className="relative text-center text-5xl font-bold">
-        <PrismicText field={slice.primary.heading} />
+        {/* <PrismicText field={slice.primary.heading} /> */}
+        Choose Your Flavor
+
       </h2>
 
       <div className="grid grid-cols-[auto,auto,auto] items-center">
@@ -132,7 +136,8 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
           <p>{FLAVORS[currentFlavorIndex].name}</p>
         </div>
         <div className="mt-2 text-2xl font-normal opacity-90">
-          <PrismicRichText field={slice.primary.price_copy} />
+        {FLAVORS[currentFlavorIndex].price}
+          {/* <PrismicRichText field={slice.primary.price_copy} /> */}
         </div>
       </div>
     </section>
