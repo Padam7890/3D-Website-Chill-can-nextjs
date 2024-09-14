@@ -16,7 +16,7 @@ const SkyDive = (): JSX.Element => {
       <h2 className="sr-only">Start Your Journey to Wellness</h2>
       <View className="h-screen w-screen">
         <Scene
-          flavor={"lemonLime"}
+          flavor={"grape"}
           sentence={"Start Your Journey to Wellness"}
         />
       </View>
