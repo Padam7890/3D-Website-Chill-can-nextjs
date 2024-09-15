@@ -18,7 +18,7 @@ export default function Soda3DViewr({ flavor }: Soda3DViewProps) {
     <div style={{ height: "100vh", width: "100%" }}>
       <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
         {/* Lighting */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         
         {/* Floating Soda Can with Scaling */}
