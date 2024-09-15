@@ -1,25 +1,11 @@
 "use client";
 
 import { Bounded } from "@/components/Bounded";
-import { asText, Content } from "@prismicio/client";
-import {
-  PrismicRichText,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
+
 import { View } from "@react-three/drei";
 import Scene from "./Scene";
 import clsx from "clsx";
 
-/**
- * Props for `AlternatingText`.
- */
-export type AlternatingTextProps =
-  SliceComponentProps<Content.AlternatingTextSlice>;
-
-/**
- * Component for "AlternatingText" Slices.
- */
 
 const sliceText = [
   {

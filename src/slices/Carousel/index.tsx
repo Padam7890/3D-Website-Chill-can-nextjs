@@ -1,11 +1,5 @@
 "use client";
 
-import { Content } from "@prismicio/client";
-import {
-  PrismicRichText,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
 import { Center, Environment, View } from "@react-three/drei";
 import { useRef, useState } from "react";
 import clsx from "clsx";
@@ -35,11 +29,6 @@ const FLAVORS: {
   },
   { flavor: "watermelon", color: "#4B7002", name: "Watermelon Crush" , price:"500" },
 ];
-
-/**
- * Props for `Carousel`.
- */
-export type CarouselProps = SliceComponentProps<Content.CarouselSlice>;
 
 /**
  * Component for "Carousel" Slices.
