@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { AlternatingText, BigText, CarouselPage, HeroPage, ProductShowCase, SkydivePage } from "@/dynamic Import/dynamicimport";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Chill Can | TailAdmin - Soda Can",

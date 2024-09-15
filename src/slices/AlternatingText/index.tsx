@@ -1,15 +1,9 @@
-// AlternatingText.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { Bounded } from "@/components/Bounded";
 import { View } from "@react-three/drei";
 import clsx from "clsx";
 import Scene from "./Scene";
-
-
-interface sliceFlavor {
-
-}
 
 const sliceText = [
   {
@@ -25,36 +19,34 @@ const sliceText = [
   {
     heading: "Chill Can Watermelon",
     flavor: "watermelon",
-    body: "Dive into the deliciously sweet taste of summer with every can. The Chill Can Watermelon Wave delivers a smooth, refreshing blend of ripe watermelon and bubbles.",
-  },
-  {
-    heading: "Chill Can Lemon Lime",
-    flavor: "lemonLime",
-    body: "Zesty lemon meets crisp lime in this tangy soda sensation. Ideal for cooling off on a hot day, it packs a citrus punch that keeps you coming back for more",
+    body: "Dive into the deliciously sweet taste of summer with every can. The Chill Can Watermelon Wave delivers a smooth, refreshing blend of ripe watermelon and bubbles",
   },
 ];
 
 const AlternatingText = (): JSX.Element => {
-  // const [Flavor, setFlavor] = useState<any>([sliceText[0].flavor]);
-  const sliceFlavor:any= [];
-  // setFlavor(sliceFlavor)
+  const [sliceFlavor, setSliceFlavor] = useState<any>([]);
 
-  sliceText.map((item, index) => {
-    const flavor = item.flavor;
-    sliceFlavor.push(flavor);
-  });
+  useEffect(() => {
+    const flavors = sliceText.map((item) => item.flavor);
+    setSliceFlavor(flavors);
+  }, []);
 
   return (
-    <Bounded className="alternating-text-container relative bg-yellow-300 text-sky-950">
+    <Bounded
+      data-slice-type={"alternating-text-container"}
+      data-slice-variation={"default"}
+      className="alternating-text-container relative bg-yellow-300 text-sky-950"
+    >
       <div>
-        <div className="relative z-[100] grid">
+        <div className="relative z-[30] grid">
           <View className="alternating-text-view absolute left-0 top-0 h-screen w-full">
-            <Scene flavors ={sliceFlavor} />
+            <Scene flavors={sliceFlavor}/>
           </View>
 
+          {/* Text Sections */}
           {sliceText.map((item, index) => (
             <div
-              key={item?.heading}
+              key={item?.heading }
               className="alternating-section grid h-screen place-items-center gap-x-12 md:grid-cols-2"
             >
               <div

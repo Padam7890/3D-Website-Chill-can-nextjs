@@ -19,10 +19,7 @@ export default function Scene({flavors}:Props) {
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
   const [currentFlavor, setCurrentFlavor] = useState("blackCherry");
 
-  // Background color array and flavor array
   const bgColors = ["#FFA6B5", "#E9CFF6", "#CBEF9A"];
-  // const flavors = ["blackCherry", "lemonLime", "watermelon"];
-  // "lemonLime" | "grape" | "blackCherry" | "strawberryLemonade" | "watermelon" | undefined
 
   useGSAP(() => {
     if (!canRef.current) return;
@@ -45,33 +42,36 @@ export default function Scene({flavors}:Props) {
       },
     });
 
-    sections.forEach((_, index) => {
-      if (!canRef.current) return;
+   sections.forEach((_, index) => {
+        if (!canRef.current) return;
+        if (index === 0) return;
 
-      const isOdd = index % 2 !== 0;
+        const isOdd = index % 2 !== 0;
 
-      const xPosition = isDesktop ? (isOdd ? "-1" : "1") : 0;
-      const yRotation = isDesktop ? (isOdd ? ".4" : "-.4") : 0;
+        const xPosition = isDesktop ? (isOdd ? "-1" : "1") : 0;
+        const yRotation = isDesktop ? (isOdd ? ".4" : "-.4") : 0;
+        scrollTl
+          .to(canRef.current.position, {
+            x: xPosition,
+            ease: "circ.inOut",
+            delay: 0.5,
+          })
+          .to(
+            canRef.current.rotation,
+            {
+              y: yRotation,
+              ease: "back.inOut",
+            },
+            "<",
+          )
+          .to(".alternating-text-container", {
+            backgroundColor: gsap.utils.wrap(bgColors, index),
+          });
+      });
+    },
+    { dependencies: [] },
+  );
 
-      scrollTl
-        .to(canRef.current.position, {
-          x: xPosition,
-          ease: "circ.inOut",
-          delay: 0,
-        })
-        .to(
-          canRef.current.rotation,
-          {
-            y: yRotation,
-            ease: "back.inOut",
-          },
-          "<"
-        )
-        .to(".alternating-text-container", {
-          backgroundColor: gsap.utils.wrap(bgColors, index),
-        });
-    });
-  }, [isDesktop]);
 
   return (
     <group

@@ -16,7 +16,7 @@ export default function Header({}: Props) {
 
   return (
     <header className="flex w-full justify-center py-4">
-      <div className="z-50 h-20 cursor-pointer text-sky-800">
+      <div className="z-[200] h-20 cursor-pointer text-sky-800">
         {/* Desktop Navbar */}
         <div className="navbar hidden flex-wrap items-center justify-between p-4 md:flex">
           <div className="flex w-full items-center justify-between gap-12">
