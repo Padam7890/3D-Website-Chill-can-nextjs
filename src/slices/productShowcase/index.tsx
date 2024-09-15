@@ -8,18 +8,9 @@ const ProductShowCase = () => {
       <div>
         <div className="container flex flex-col items-center justify-between gap-10 md:flex-row">
           <div className="leftside flex max-w-96 flex-col gap-8">
-            <h1 className="text-6xl font-bold">Black Chhery</h1>
-            <p className=" leading-7">
-              Experience the bold and
-              irresistible taste of Chill Can Black Cherry Bliss. Each sip
-              delivers a perfect balance of deep, juicy black cherry flavor with
-              just the right amount of sweetness and fizz. This refreshing soda
-              brings the taste of ripe black cherries in a deliciously smooth
-              and satisfying beverage, perfect for quenching your thirst and
-              satisfying your craving for something sweet and bold. Whether
-              you're enjoying it on its own or pairing it with your favorite
-              meal, Chill Can Black Cherry Bliss is the ultimate choice for
-              cherry lovers.
+            <h1 className="text-6xl font-bold">Black Cherry</h1>
+            <p className="leading-7">
+              Experience the bold and irresistible taste of Chill Can Black Cherry Bliss. Each sip delivers a perfect balance of deep &apos;juicy&apos; black cherry flavor with just the right amount of sweetness and fizz. This refreshing soda brings the taste of ripe black cherries in a deliciously smooth and satisfying beverage &apos;perfect&apos; for quenching your thirst and satisfying your craving for something sweet and bold. Whether you&apos;re enjoying it on its own or pairing it with your favorite meal, Chill Can Black Cherry Bliss is the ultimate choice for cherry lovers.
             </p>
           </div>
 
