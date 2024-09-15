@@ -1,4 +1,3 @@
-import { PrismicNextLink } from "@prismicio/next";
 import clsx from "clsx";
 import Link from "next/link";
 

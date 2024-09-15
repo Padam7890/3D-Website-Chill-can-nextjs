@@ -1,25 +1,55 @@
+// AlternatingText.tsx
 "use client";
-
+import { useEffect, useState } from "react";
 import { Bounded } from "@/components/Bounded";
-
 import { View } from "@react-three/drei";
-import Scene from "./Scene";
 import clsx from "clsx";
+import Scene from "./Scene";
 
+
+interface sliceFlavor {
+
+}
 
 const sliceText = [
   {
-    heading: "This is Heading",
-    body: "This is Body",
+    heading: "Chill Can Cherry Bliss",
+    flavor: "blackCherry",
+    body: "A bold burst of juicy black cherries in every sip. This refreshing soda delivers the perfect balance of sweetness and fizz to satisfy your cravings",
+  },
+  {
+    heading: "Chill Can Lemon Lime",
+    flavor: "lemonLime",
+    body: "Zesty lemon meets crisp lime in this tangy soda sensation. Ideal for cooling off on a hot day, it packs a citrus punch that keeps you coming back for more",
+  },
+  {
+    heading: "Chill Can Watermelon",
+    flavor: "watermelon",
+    body: "Dive into the deliciously sweet taste of summer with every can. The Chill Can Watermelon Wave delivers a smooth, refreshing blend of ripe watermelon and bubbles.",
+  },
+  {
+    heading: "Chill Can Lemon Lime",
+    flavor: "lemonLime",
+    body: "Zesty lemon meets crisp lime in this tangy soda sensation. Ideal for cooling off on a hot day, it packs a citrus punch that keeps you coming back for more",
   },
 ];
+
 const AlternatingText = (): JSX.Element => {
+  // const [Flavor, setFlavor] = useState<any>([sliceText[0].flavor]);
+  const sliceFlavor:any= [];
+  // setFlavor(sliceFlavor)
+
+  sliceText.map((item, index) => {
+    const flavor = item.flavor;
+    sliceFlavor.push(flavor);
+  });
+
   return (
     <Bounded className="alternating-text-container relative bg-yellow-300 text-sky-950">
       <div>
         <div className="relative z-[100] grid">
           <View className="alternating-text-view absolute left-0 top-0 h-screen w-full">
-            <Scene />
+            <Scene flavors ={sliceFlavor} />
           </View>
 
           {sliceText.map((item, index) => (
@@ -30,7 +60,6 @@ const AlternatingText = (): JSX.Element => {
               <div
                 className={clsx(
                   index % 2 === 0 ? "col-start-1" : "md:col-start-2",
-
                   "rounded-lg p-4 backdrop-blur-lg max-md:bg-white/30",
                 )}
               >

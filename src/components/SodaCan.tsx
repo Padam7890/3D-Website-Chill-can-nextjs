@@ -1,14 +1,15 @@
 "use client";
 
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, OrbitControls, Environment, Float } from "@react-three/drei";
 import * as THREE from "three";
+import { Canvas } from "@react-three/fiber";
 
 useGLTF.preload("/Soda-can.gltf");
 
 const flavorTextures = {
+  blackCherry: "/labels/black-cherry.png",
   lemonLime: "/labels/lemon-lime.png",
   grape: "/labels/grape.png",
-  blackCherry: "/labels/black-cherry.png",
   strawberryLemonade: "/labels/strawberry-lemonade.png",
   watermelon: "/labels/watermelon.png",
 };
@@ -30,7 +31,6 @@ export function SodaCan({
   ...props
 }: SodaCanProps) {
   const { nodes } = useGLTF("/Soda-can.gltf");
-
   const labels = useTexture(flavorTextures);
 
   // Fixes upside down labels
@@ -66,3 +66,5 @@ export function SodaCan({
     </group>
   );
 }
+
+

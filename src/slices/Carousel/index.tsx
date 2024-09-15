@@ -1,6 +1,6 @@
 "use client";
 
-import { Center, Environment, View } from "@react-three/drei";
+import { Center, Environment, OrbitControls, View } from "@react-three/drei";
 import { useRef, useState } from "react";
 import clsx from "clsx";
 import { Group } from "three";
@@ -102,6 +102,7 @@ const Carousel = (): JSX.Element => {
               floatIntensity={0.3}
               rotationIntensity={1}
               flavor={FLAVORS[currentFlavorIndex].flavor}
+           
             />
           </Center>
 

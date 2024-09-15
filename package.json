@@ -15,9 +15,6 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@prismicio/client": "^7.8.0",
-    "@prismicio/next": "^1.6.0",
-    "@prismicio/react": "^2.8.0",
     "@react-three/drei": "^9.111.3",
     "@react-three/fiber": "^8.17.6",
     "@types/three": "^0.167.2",

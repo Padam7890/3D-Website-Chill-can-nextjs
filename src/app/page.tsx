@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CarouselPage, HeroPage, SkydivePage } from "@/dynamic Import/dynamicimport";
+import { AlternatingText, BigText, CarouselPage, HeroPage, SkydivePage } from "@/dynamic Import/dynamicimport";
 
 export const metadata: Metadata = {
   title: "Chill Can | TailAdmin - Soda Can",
@@ -12,8 +12,7 @@ export default async function Index() {
       <HeroPage/>
       <SkydivePage/>
       <CarouselPage/>
-      {/* <AlternatingText/>
-      <BigText/> */}
+      <AlternatingText/>
       {/* <SliceZone slices={home.data.slices} components={components} /> */}
     </div>
   );
