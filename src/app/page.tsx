@@ -3,7 +3,7 @@ import { AlternatingText, BigText, CarouselPage, HeroPage, ProductShowCase, Skyd
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Chill Can | TailAdmin - Soda Can",
+  title: "Chill Can | Soda Can",
   description: "This is Chill Can Soda Website",
 };
 

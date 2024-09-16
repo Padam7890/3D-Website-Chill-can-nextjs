@@ -14,8 +14,11 @@ const ProductShowCase = () => {
             </p>
           </div>
 
-          <div className="rightside">
+          <div className="rightside relative cursor-pointer">
             <Soda3DViewr flavor="blackCherry" />
+            <div className="intro absolute bottom-32 right-0 w-full ">
+             {"<"} Hover/Scroll the Can for 360 degrees View {">"}
+            </div>
           </div>
         </div>
       </div>
