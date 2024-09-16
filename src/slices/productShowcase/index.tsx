@@ -5,8 +5,8 @@ import React from "react";
 const ProductShowCase = () => {
   return (
     <Bounded className="h-auto md:h-screen w-full bg-red-100 text-sky-950 ">
-      <div className="mt-9 md:mt-0">
-        <div className="container flex flex-col items-center justify-between gap-1 md:gap-10 md:flex-row">
+      <div className="mt-9 md:mt-0 w-full">
+        <div className="container flex flex-col items-center justify-between gap-1 md:gap-12 md:flex-row">
           <div className="leftside flex max-w-96 flex-col gap-8">
             <h1 className="text-6xl font-bold">Black Cherry</h1>
             <p className="leading-7">
