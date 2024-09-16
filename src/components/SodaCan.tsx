@@ -8,8 +8,8 @@ useGLTF.preload("/Soda-can.gltf");
 const flavorTextures = {
   lemonLime: "/labels/lemon-lime.png",
   grape: "/labels/grape.png",
-  blackCherry: "/labels/cherry.png",
-  strawberryLemonade: "/labels/strawberry.png",
+  blackCherry: "/labels/black-cherry.png",
+  strawberryLemonade: "/labels/strawberry-lemonade.png",
   watermelon: "/labels/watermelon.png",
 };
 
