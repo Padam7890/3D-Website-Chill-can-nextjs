@@ -1,5 +1,4 @@
 import { Bounded } from "@/components/Bounded";
-import Button from "@/components/Button";
 import Soda3DViewr from "@/components/Soda3DView";
 import React from "react";
 import { FaCartArrowDown } from "react-icons/fa";

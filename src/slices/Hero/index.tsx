@@ -13,6 +13,8 @@ import { Bubbles } from "./Bubbles";
 import { useStore } from "@/hooks/useStore";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
+import { useGetMainHeroSectionQuery } from "@/redux/api/hero-section/hero-section";
+import { MainHeroTypes } from "@/utils/types";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -20,6 +22,9 @@ const Hero = (): JSX.Element => {
   const ready = useStore((state) => state.ready);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
+  const { data, isLoading, isError, error } = useGetMainHeroSectionQuery();
+
+  const mainHero = data?.data[0];
   useGSAP(
     () => {
       if (!ready && isDesktop) return;
@@ -102,30 +107,33 @@ const Hero = (): JSX.Element => {
 
       <div className="grid">
         <div className="grid h-screen place-items-center">
-          <div className="grid auto-rows-min place-items-center text-center">
-            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
-              <TextSplitter
-                text="Live gutsy"
-                wordDisplayStyle="block"
-                className="hero-header-word"
+          {mainHero ? (
+            <div className="grid auto-rows-min place-items-center text-center">
+              <h1 className="hero-header text-7xl font-black uppercase text-orange-500 md:text-[9rem] lg:text-[13rem]">
+                <TextSplitter
+                  text={mainHero?.title as string}
+                  wordDisplayStyle="block"
+                  className="hero-header-word"
+                />
+              </h1>
+              <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
+                {mainHero?.subTitle}
+              </div>
+              <div className="hero-body text-2xl font-normal text-sky-950">
+                {mainHero?.heroContent}
+              </div>
+              <Button
+                buttonLink={"/"}
+                buttonText="Shop Now"
+                className="hero-button mt-12"
               />
-            </h1>
-            <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
-              Soda Perfected
             </div>
-            <div className="hero-body text-2xl font-normal text-sky-950">
-              3-5g sugar. 9g fiber. 5 delicious flavors.
-            </div>
-            <Button
-              buttonLink={"/"}
-              buttonText="Shop Now"
-              className="hero-button mt-12"
-            />
-          </div>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="text-side relative z-[45] grid h-screen items-center gap-4 md:grid-cols-2">
-      
           <Image
             className="w-full md:hidden"
             src={"/Images/chillcangroup.png"}
