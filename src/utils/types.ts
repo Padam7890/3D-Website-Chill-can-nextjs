@@ -10,3 +10,8 @@ export interface MainHeroTypes {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+
+export interface SecondHeroTypes {
+  data:MainHeroSectionTypes[];  
+}

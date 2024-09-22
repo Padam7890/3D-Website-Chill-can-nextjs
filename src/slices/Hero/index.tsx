@@ -15,6 +15,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useGetMainHeroSectionQuery } from "@/redux/api/hero-section/hero-section";
 import { MainHeroTypes } from "@/utils/types";
+import { useGetSecondHeroSectionQuery } from "@/redux/api/second-hero-section/second-hero-section";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -23,11 +24,13 @@ const Hero = (): JSX.Element => {
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   const { data, isLoading, isError, error } = useGetMainHeroSectionQuery();
+  const { data: secondHero } = useGetSecondHeroSectionQuery();
 
   const mainHero = data?.data[0];
+  const secondHeroSection = secondHero?.data[0];
   useGSAP(
     () => {
-      if (!ready && isDesktop) return;
+      if (!ready && isDesktop && !mainHero && !secondHero) return;
 
       const introTl = gsap.timeline();
 
@@ -91,9 +94,12 @@ const Hero = (): JSX.Element => {
         .from(".text-side-body", {
           y: 20,
           opacity: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          delay: 0.5,
         });
     },
-    { dependencies: [ready, isDesktop] },
+    { dependencies: [ready, isDesktop, mainHero, secondHero] },
   );
 
   return (
@@ -114,6 +120,7 @@ const Hero = (): JSX.Element => {
                   text={mainHero?.title as string}
                   wordDisplayStyle="block"
                   className="hero-header-word"
+                  key={mainHero.title}
                 />
               </h1>
               <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
@@ -134,25 +141,28 @@ const Hero = (): JSX.Element => {
         </div>
 
         <div className="text-side relative z-[45] grid h-screen items-center gap-4 md:grid-cols-2">
-          <Image
-            className="w-full md:hidden"
-            src={"/Images/chillcangroup.png"}
-            alt="can image "
-            width={500}
-            height={50}
-          />
-          <div>
-            <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
-              <TextSplitter text={"Try all five flavors"} />
-            </h2>
-            <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
-              <p>
-                Our soda is made with real fruit juice and a touch of cane
-                sugar. We never use artificial sweeteners or high fructose corn
-                syrup. Try all five flavors and find your favorite!
-              </p>
-            </div>
-          </div>
+          {secondHeroSection && (
+            <>
+              <Image
+                className="w-full md:hidden"
+                src={"/Images/chillcangroup.png"}
+                alt="can image "
+                width={500}
+                height={50}
+              />
+              <div>
+                <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
+                  <TextSplitter
+                    key={secondHeroSection?.title}
+                    text={secondHeroSection?.title as string}
+                  />
+                </h2>
+                <div key={secondHeroSection.heroContent} className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
+                  <p>{secondHeroSection?.heroContent as string}</p>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Bounded>
