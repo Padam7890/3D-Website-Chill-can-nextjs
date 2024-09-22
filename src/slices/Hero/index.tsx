@@ -14,23 +14,29 @@ import { useStore } from "@/hooks/useStore";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useGetMainHeroSectionQuery } from "@/redux/api/hero-section/hero-section";
-import { MainHeroTypes } from "@/utils/types";
 import { useGetSecondHeroSectionQuery } from "@/redux/api/second-hero-section/second-hero-section";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = (): JSX.Element => {
   const ready = useStore((state) => state.ready);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
+  // Fetch the API data
   const { data, isLoading, isError, error } = useGetMainHeroSectionQuery();
   const { data: secondHero } = useGetSecondHeroSectionQuery();
 
+  // Extracting the content of the API data
   const mainHero = data?.data[0];
   const secondHeroSection = secondHero?.data[0];
+
+  // Only run the GSAP animations if both mainHero and secondHero data are ready
   useGSAP(
     () => {
-      if (!ready && isDesktop && !mainHero && !secondHero) return;
+      if (!ready || isLoading || isError || !mainHero || !secondHeroSection || !isDesktop) {
+        return;
+      }
 
       const introTl = gsap.timeline();
 
@@ -99,7 +105,7 @@ const Hero = (): JSX.Element => {
           delay: 0.5,
         });
     },
-    { dependencies: [ready, isDesktop, mainHero, secondHero] },
+    { dependencies: [ready, isDesktop, mainHero, secondHeroSection] },
   );
 
   return (
@@ -157,7 +163,10 @@ const Hero = (): JSX.Element => {
                     text={secondHeroSection?.title as string}
                   />
                 </h2>
-                <div key={secondHeroSection.heroContent} className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
+                <div
+                  key={secondHeroSection.heroContent}
+                  className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950"
+                >
                   <p>{secondHeroSection?.heroContent as string}</p>
                 </div>
               </div>
