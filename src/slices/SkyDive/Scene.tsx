@@ -13,7 +13,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type SkyDiveProps = {
   sentence: string | null;
-  flavor: "lemonLime";
+  flavor: string;
 };
 
 export default function Scene({ sentence, flavor }: SkyDiveProps) {
@@ -128,7 +128,11 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
         ease: "back.in(1.7)",
       })
       .to(cloudsRef.current.position, { z: 7, duration: 0.5 });
-  });
+    
+
+  }
+  , [sentence, flavor]
+);
 
   return (
     <group ref={groupRef}>

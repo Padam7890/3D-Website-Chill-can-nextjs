@@ -9,10 +9,12 @@ const HomePage = () => {
   return (
     <Provider store={store}>
       <HeroPage/>
-      <SkydivePage/>
       <CarouselPage/>
       <AlternatingText/>
+      <SkydivePage/>
       <ProductShowCase/>
+
+
       {/* <SliceZone slices={home.data.slices} components={components} /> */}
     </Provider>
   )

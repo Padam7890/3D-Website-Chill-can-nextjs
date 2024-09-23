@@ -15,3 +15,16 @@ export interface MainHeroTypes {
 export interface SecondHeroTypes {
   data:MainHeroSectionTypes[];  
 }
+
+export interface SkydiveTypes {
+  data: SkydiveSectionTypes[];
+}
+
+interface SkydiveSectionTypes {
+  id?: number;
+  title: string;
+  flavor:{
+    id?: number;
+    flavorName: string;
+  }
+}
