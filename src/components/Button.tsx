@@ -3,7 +3,7 @@ import Link from "next/link";
 
 type Props = {
   buttonLink: string;
-  buttonText: string | null;
+  buttonText: string | number;
   className?: string;
 };
 
