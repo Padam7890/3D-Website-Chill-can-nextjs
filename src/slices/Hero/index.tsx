@@ -1,7 +1,6 @@
 "use client";
 
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { View } from "@react-three/drei";
 
@@ -15,8 +14,10 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useGetMainHeroSectionQuery } from "@/redux/api/hero-section/hero-section";
 import { useGetSecondHeroSectionQuery } from "@/redux/api/second-hero-section/second-hero-section";
+import { useEffect } from "react";
+import { useGSAP } from "@gsap/react";
 
-// Register GSAP plugins
+// Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = (): JSX.Element => {
@@ -26,88 +27,61 @@ const Hero = (): JSX.Element => {
   // Fetch the API data
   const { data, isLoading, isError, error } = useGetMainHeroSectionQuery();
   const { data: secondHero } = useGetSecondHeroSectionQuery();
-
+ 
   // Extracting the content of the API data
   const mainHero = data?.data[0];
   const secondHeroSection = secondHero?.data[0];
 
-  // Only run the GSAP animations if both mainHero and secondHero data are ready
-  useGSAP(
-    () => {
-      if (!ready || isLoading || isError || !mainHero || !secondHeroSection || !isDesktop) {
-        return;
-      }
-
-      const introTl = gsap.timeline();
-
-      introTl
-        .set(".hero", { opacity: 1 })
-        .from(".hero-header-word", {
-          scale: 3,
-          opacity: 0,
-          ease: "power4.in",
-          delay: 0.3,
-          stagger: 1,
-        })
-        .from(
-          ".hero-subheading",
-          {
-            opacity: 0,
-            y: 30,
-          },
-          "+=.8",
-        )
-        .from(".hero-body", {
-          opacity: 0,
-          y: 10,
-        })
-        .from(".hero-button", {
-          opacity: 0,
-          y: 10,
-          duration: 0.6,
-        });
-
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.5,
-        },
-      });
-
-      scrollTl
-        .fromTo(
-          "body",
-          {
-            backgroundColor: "#FDE047",
-          },
-          {
-            backgroundColor: "#D9F99D",
-            overwrite: "auto",
-          },
-          1,
-        )
-        .from(".text-side-heading .split-char", {
-          scale: 1.3,
-          y: 40,
-          rotate: -25,
-          opacity: 0,
-          stagger: 0.1,
-          ease: "back.out(3)",
-          duration: 0.5,
-        })
-        .from(".text-side-body", {
-          y: 20,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          delay: 0.5,
-        });
-    },
-    { dependencies: [ready, isDesktop, mainHero, secondHeroSection] },
-  );
-
+  useGSAP(() => {
+    if (!mainHero || !secondHeroSection) {
+      return;
+    }
+  
+    const introTl = gsap.timeline();
+  
+    introTl
+      .set(".hero", { opacity: 1 })
+      .from(".hero-header-word", {
+        scale: 3,
+        opacity: 0,
+        ease: "power4.in",
+        delay: 0.3,
+        stagger: 1,
+      })
+      .from(".hero-subheading", { opacity: 0, y: 30 }, "+=.8")
+      .from(".hero-body", { opacity: 0, y: 10 })
+      .from(".hero-button", { opacity: 0, y: 10, duration: 0.6 });
+  
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5,
+        // Optional: Add markers for debugging scroll trigger on mobile
+        // markers: true,
+      },
+    });
+  
+    scrollTl
+      .fromTo(
+        "body",
+        { backgroundColor: "#FDE047" },
+        { backgroundColor: "#D9F99D", overwrite: "auto" },
+        1,
+      )
+      .from(".text-side-heading .split-char", {
+        scale: 1.3,
+        y: 40,
+        rotate: -25,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "back.out(3)",
+        duration: 0.5,
+      })
+      .from(".text-side-body", { y: 20, opacity: 0, duration: 0.5, stagger: 0.1, delay: 0.5 });
+  }, { dependencies: [mainHero, secondHeroSection] });
+  
   return (
     <Bounded className="hero opacity-0">
       {isDesktop && (

@@ -9,8 +9,8 @@ const flavorTextures = {
   lemonLime: "/labels/lemon-lime.png",
   grape: "/labels/grape.png",
   blackCherry: "/labels/black-cherry.png",
-  watermelon: "/labels/watermelon.png",
   strawberryLemonade: "/labels/strawberry-lemonade.png",
+  watermelon: "/labels/watermelon.png",
 
 };
 
