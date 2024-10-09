@@ -56,9 +56,9 @@ const AlternatingText = (): JSX.Element => {
                 )}
               >
                 <h2 className="text-balance text-6xl font-bold">
-                  {item.heading}
+                  {item?.heading}
                 </h2>
-                <div className="mt-4 text-xl">{item.body}</div>
+                <div className="mt-4 text-xl">{item?.body}</div>
               </div>
             </div>
           ))}
