@@ -14,7 +14,6 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useGetMainHeroSectionQuery } from "@/redux/api/hero-section/hero-section";
 import { useGetSecondHeroSectionQuery } from "@/redux/api/second-hero-section/second-hero-section";
-import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 
 // Register GSAP plugin
